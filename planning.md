@@ -49,12 +49,12 @@ class CreateEvents
   def change
     create_table :events do |t|
       t.belongs_to :creator, class_name: "User", index: true, foreign_key: true
-      t.string: title
-      t.string: description
-      t.string: location
-      t.date: date
-      t.time: start_time
-      t.time: finish_time
+      t.string :title
+      t.string :description
+      t.string :location
+      t.date :date
+      t.time :start_time
+      t.time :finish_time
       t.timestamps
     end
 
@@ -86,7 +86,7 @@ end
   - Add devise, create User model
   - Set root_path to events#index
   - Add association between User and event - creator, and foreign key to Event model. Specify :foreign_key, :class_name.
-  - Create a view user#show - lists all events a user has created.
+  - * Create a view user#show - lists all events a user has created.
   - EventsController - add #new and #create. #create uses #build to create with user ID prepopulated.
   - Create form for creating an event (event#create)
   - Create a view event#show - display details of event.
@@ -108,3 +108,12 @@ end
   - Allow users to edit and delete events they created
   - Allow users to remove themselves as an attendee
   - Make event private and add ability for event creator to invite specific users to an event.
+
+### Notes
+
+Test user details:
+<test@test.com>
+testing
+
+<test2@test.com>
+testing
