@@ -86,8 +86,8 @@ end
   - Add devise, create User model
   - Set root_path to events#index
   - Add association between User and event - creator, and foreign key to Event model. Specify :foreign_key, :class_name.
-  - * Create a view user#show - lists all events a user has created.
-  - EventsController - add #new and #create. #create uses #build to create with user ID prepopulated.
+  - Create a view user#show - lists all events a user has created.
+  - * EventsController - add #new and #create. #create uses #build to create with user ID prepopulated.
   - Create form for creating an event (event#create)
   - Create a view event#show - display details of event.
 
