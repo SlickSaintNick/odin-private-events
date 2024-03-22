@@ -5,9 +5,14 @@
       <p class="lead">
         <p class="fs-3"><%= @event.location%></P>
         <p class="fs-5"><%= @event.date.to_fs(:short)%>, <%= @event.start_time.to_fs(:time)%> - <%= @event.finish_time.to_fs(:time)%></P>
-        <p><%= @event.description%></p>
-        <p class="fs-5">Organiser email: <%= @event.creator.email%></P>
       </p>
+      <p><%= @event.description%></p>
+      <p class="fs-5">Organiser email: <%= @event.creator.email%></p>
+      <h2>Attend this event:</h2>
+      <%= form_with model: [ @event, @event.event_attendees.build ] do |form| %>
+        <% form.text_field :attending_event_id, value: @event.id %>
+        <%= form.submit %>
+      <% end %>
     </div>
   </div>
 </div>

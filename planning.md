@@ -29,7 +29,7 @@ end
 class User < ActiveRecord::Base
   # event / attendees connection
   has_many :event_attendees, foreign_key: :event_attendee_id
-  has_many :attendees, through: :event_attendees
+  has_many :attending_events, through: :event_attendees
   # host connection
   has_many :created_events, foreign_key: :creator_id, class_name: "Event"
 end
@@ -87,14 +87,15 @@ end
   - Set root_path to events#index
   - Add association between User and event - creator, and foreign key to Event model. Specify :foreign_key, :class_name.
   - Create a view user#show - lists all events a user has created.
-  - * EventsController - add #new and #create. #create uses #build to create with user ID prepopulated.
+  - EventsController - add #new and #create. #create uses #build to create with user ID prepopulated.
   - Create form for creating an event (event#create)
   - Create a view event#show - display details of event.
 
 - Event attendance
   - Add association between User and Event - attendee and attended_event.
   - Create tables and foreign keys, including the through table
-  - Create controller/routes for "through" table allowing a user to become an attendee of an event. Create interface in view where user can indicate attending event.
+  - * Create controller/routes for "through" table allowing a user to become an attendee of an event.
+  - Create interface in view where user can indicate attending event.
   - Event's Show page displays list of attendees
   - User's Show page displays list of attended_events
   - Separate the user Show page into past and future events
