@@ -1,0 +1,13 @@
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+  <div class="container-fluid py-1">
+    <h1 class="display-5 fw-bold"><%= @event.title %></h1>
+    <div class="col-md-8">
+      <p class="lead">
+        <p class="fs-3"><%= @event.location%></P>
+        <p class="fs-5"><%= @event.date.to_fs(:short)%>, <%= @event.start_time.to_fs(:time)%> - <%= @event.finish_time.to_fs(:time)%></P>
+        <p><%= @event.description%></p>
+        <p class="fs-5">Organiser email: <%= @event.creator.email%></P>
+      </p>
+    </div>
+  </div>
+</div>
