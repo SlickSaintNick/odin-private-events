@@ -104,14 +104,32 @@ end
   - Create tables and foreign keys, including the through table
   - Create controller/routes for "through" table allowing a user to become an attendee of an event.
   - Create interface in view where user can indicate attending event.
-  - * Event's Show page displays list of attendees
+  - Event's Show page displays list of attendees
   - User's Show page displays list of attended_events
-  - Separate the user Show page into past and future events
+  - Separate the user Show page into past and future events (using logic in the view only - only one query)
 
 - Finishing touches
   - separate past and upcoming events on event#index - class methods on Event model (Event.past, Event.upcoming)
   - Refactor those methods into scopes
   - Add navigation (I might do this earlier)
+
+- (My own fixes prior to doing extra)
+  - Add appropriate validation
+    - Sign in
+      - User signed in to create events, view user page, or register to attend events.
+    - Event Creation
+      - Must have a title, description, location, date, start, finish
+      - Date is in the future or today
+    - Event Registration
+      - User must not already be registered for that event.
+      - Event must be today or in the future (do in view as well)
+      - Note: Users can register to attend their own events
+  - **Add name to user model**
+    - Name shown on 'Your Events' page.
+    - Name shown on Events Index and Show instead of creator email
+    - Name shown as list of people attending event instead of email.
+  - Refactor into partials
+  - Bootstrap all of the accessible pages
 
 - Extra
   - Allow users to edit and delete events they created

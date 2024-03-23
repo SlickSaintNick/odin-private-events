@@ -19,7 +19,7 @@
 <h1 class="p-2">Your Upcoming Events</h1>
 <div class="container">
   <% @attending_events.each do |event| %>
-    <% if event.date >= DateTime.now %>
+    <% if event.date >= Date.today %>
       <div class="card mx-auto my-3 p-2" style="width: auto">
         <div class="card-header">
           <h5 class="card-title"><%= event.title %></h5>
@@ -39,7 +39,7 @@
 <h1 class="p-2">Your Past Events</h1>
 <div class="container">
   <% @attending_events.each do |event| %>
-    <% if event.date < DateTime.now %>
+    <% if event.date < Date.today %>
       <div class="card mx-auto my-3 p-2" style="width: auto">
         <div class="card-header">
           <h5 class="card-title"><%= event.title %></h5>

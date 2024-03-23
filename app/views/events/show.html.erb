@@ -8,10 +8,13 @@
       </p>
       <p><%= @event.description%></p>
       <p class="fs-5">Organiser email: <%= @event.creator.email%></p>
-      <h2>Attend this event:</h2>
-      <%= form_with model: [ @event, @event.event_attendees.build ] do |form| %>
-        <% form.text_field :attending_event_id, value: @event.id %>
-        <%= form.submit %>
+      <% if @event.date < Date.today %>
+        <p><em>This event has already finished.</em></p>
+      <% else %>
+        <%= form_with model: [ @event, @event.event_attendees.build ] do |form| %>
+          <% form.text_field :attending_event_id, value: @event.id %>
+          <%= form.submit "I'll be there!", class: "btn btn-primary" %>
+        <% end %>
       <% end %>
       </br>
       <p>Who is attending:</p>

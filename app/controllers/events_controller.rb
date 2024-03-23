@@ -1,9 +1,14 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
-    @events = Event.all
+    # @events = Event.all
+    @past_events = Event.all.past
+    @future_events = Event.all.future
   end
 
   def show
+    # Add current_user_attending? variable
     @event = Event.find(params[:id])
   end
 
