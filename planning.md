@@ -18,27 +18,35 @@ An Event can have multiple attendees (who are Users). Linking table called `even
 ```rb
 # app/models/event.rb
 class Event < ActiveRecord::Base
-  # event / attendees connection
-  has_many :event_attendees, foreign_key: :attending_event_id
-  has_many :attendees, through: :event_attendees, source: :event_attendee
   # creator connection
   belongs_to :creator, class_name: "User"
+  # event / attendees connection. The first line links to the join table and tells rails
+  # to put this event's id in the attending_event_id column.
+  # The second line links further on, to the user table, and tells rails to
+  # use the event_attendee_id column to find the users attending.
+  # Link 1: 'event' --> 'event_attendees'[attending_event_id] then
+  # Link 2: 'event_attendees'[event_attendee_id] --> 'users'[id]
+  # To access, e.g. @event.attendees
+  has_many :event_attendees, foreign_key: :attending_event_id
+  has_many :attendees, through: :event_attendees, source: :user
 end
 
 # app/models/user.rb
 class User < ActiveRecord::Base
-  # event / attendees connection
-  has_many :event_attendees, foreign_key: :event_attendee_id
-  has_many :attending_events, through: :event_attendees
   # host connection
   has_many :created_events, foreign_key: :creator_id, class_name: "Event"
+  # event / attendees connection
+  has_many :event_attendees, foreign_key: :event_attendee_id
+  has_many :attending_events, through: :event_attendees, source: :event
 end
 
-# app/models/event_attendees.rb
+# app/models/event_attendee.rb
 class EventAttendee < ActiveRecord::Base
   # event / attendees join table
-  belongs_to :event_attendee, class_name: "User"
-  belongs_to :attending_event, class_name: "Event"
+  # Here we need to specify to rails exactly which foreign key in this table
+  # leads to which other table (as their names are not inferable).
+  belongs_to :event, foreign_key: :attending_event_id
+  belongs_to :user, foreign_key: :event_attendee_id
 end
 ```
 
@@ -94,9 +102,9 @@ end
 - Event attendance
   - Add association between User and Event - attendee and attended_event.
   - Create tables and foreign keys, including the through table
-  - * Create controller/routes for "through" table allowing a user to become an attendee of an event.
+  - Create controller/routes for "through" table allowing a user to become an attendee of an event.
   - Create interface in view where user can indicate attending event.
-  - Event's Show page displays list of attendees
+  - * Event's Show page displays list of attendees
   - User's Show page displays list of attended_events
   - Separate the user Show page into past and future events
 

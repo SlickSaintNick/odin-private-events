@@ -7,5 +7,5 @@ class User < ApplicationRecord
 
   # Has_many :attending_events through event_attendees table
   has_many :event_attendees, foreign_key: :event_attendee_id
-  has_many :attending_events, through: :event_attendees, source: :attending_event
+  has_many :attending_events, through: :event_attendees, source: :event
 end

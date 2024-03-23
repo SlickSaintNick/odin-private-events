@@ -13,6 +13,11 @@
         <% form.text_field :attending_event_id, value: @event.id %>
         <%= form.submit %>
       <% end %>
+      </br>
+      <p>Who is attending:</p>
+      <% @event.attendees.each do |attendee| %>
+        <%= attendee.email %>
+      <% end %>
     </div>
   </div>
 </div>
