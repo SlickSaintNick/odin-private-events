@@ -3,8 +3,8 @@ class EventsController < ApplicationController
 
   def index
     # @events = Event.all
-    @past_events = Event.all.past
-    @future_events = Event.all.future
+    @past_events = Event.all.past.order(date: 'DESC')
+    @future_events = Event.all.future.order(date: 'ASC')
   end
 
   def show
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.created_events.build(event_params)
     if @event.save
-      redirect_to root_path
+      redirect_to action: "show", id: @event.id
     else
       render :new, status: :unprocessable_entity
     end

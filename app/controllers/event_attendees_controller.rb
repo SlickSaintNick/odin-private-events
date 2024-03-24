@@ -13,7 +13,7 @@ class EventAttendeesController < ApplicationController
     else
       @event_attendee = @event.event_attendees.create(event_attendee_id: current_user.id)
       if @event_attendee.save
-        redirect_to root_path
+        redirect_back_or_to root_path
       else
         render "events/show", status: :unprocessable_entity
       end

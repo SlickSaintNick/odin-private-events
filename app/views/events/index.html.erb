@@ -1,36 +1,9 @@
 <h1 class="p-2">All Events</h1>
-<h2 class="p-3">Upcoming Events</h2>
+<h2 class="p-2">Upcoming Events</h2>
 <div class="container">
-  <% @future_events.each do |event| %>
-    <div class="card mx-auto my-3 p-2" style="width: auto">
-      <div class="card-header">
-        <%# h5? %>
-        <h5><%= link_to event.title, event_path(event.id), class: "card-title" %></h5>
-      </div>
-      <div class="card-body">
-        <h6 class="card-subtitle"><%= event.date.to_fs(:short) %> | <%= event.start_time.to_fs(:time) %></h6>
-        <p class="card-text"><%= event.location %></p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text"><%= event.description%></p>
-        <p class="card-text">Organiser: <%= event.creator.name %> (<%= event.creator.email %>)</p>
-      </div>
-    </div>
-  <% end %>
-  <h2 class="p-3">Past Events</h2>
-  <% @past_events.each do |event| %>
-    <div class="card mx-auto my-3 p-2" style="width: auto">
-      <div class="card-header">
-        <h5><%= link_to event.title, event_path(event.id), class: "card-title" %></h5>
-      </div>
-      <div class="card-body">
-        <h6 class="card-subtitle"><%= event.date.to_fs(:short) %> | <%= event.start_time.to_fs(:time) %></h6>
-        <p class="card-text"><%= event.location %></p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text"><%= event.description%></p>
-        <p class="card-text">Organiser: <%= event.creator.name %> (<%= event.creator.email %>)</p>
-      </div>
-    </div>
-  <% end %>
+  <%= render @future_events %>
+</div>
+<h2 class="p-2">Past Events</h2>
+<div class="container">
+  <%= render @past_events %>
 </div>

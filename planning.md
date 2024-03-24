@@ -124,11 +124,11 @@ end
       - User must not already be registered for that event.
       - Event must be today or in the future (do in view as well)
       - Note: Users can register to attend their own events
-  - **Add name to user model**
+  - Add name to user model
     - Name shown on 'Your Events' page.
     - Name shown on Events Index and Show instead of creator email
     - Name shown as list of people attending event instead of email.
-  - Refactor into partials
+  - **Refactor into partials**
   - Bootstrap all of the accessible pages
 
 - Extra
