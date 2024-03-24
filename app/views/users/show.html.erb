@@ -1,9 +1,10 @@
-<h1 class="p-2">Your Created Events</h1>
+<h1 class="p-2">Your Events</h1>
+<h2 class="p-2">Created by you:</h2>
 <div class="container">
   <% @created_events.each do |event| %>
     <div class="card mx-auto my-3 p-2" style="width: auto">
       <div class="card-header">
-        <h5 class="card-title"><%= event.title %></h5>
+        <h5><%= link_to event.title, event_path(event.id), class: "card-title" %></h5>
       </div>
       <div class="card-body">
         <h6 class="card-subtitle"><%= event.date.to_fs(:short) %> | <%= event.start_time.to_fs(:time) %></h6>
@@ -16,13 +17,13 @@
   <% end %>
 </div>
 
-<h1 class="p-2">Your Upcoming Events</h1>
+<h2 class="p-2">Your Upcoming Events</h2>
 <div class="container">
   <% @attending_events.each do |event| %>
     <% if event.date >= Date.today %>
       <div class="card mx-auto my-3 p-2" style="width: auto">
         <div class="card-header">
-          <h5 class="card-title"><%= event.title %></h5>
+          <h5><%= link_to event.title, event_path(event.id), class: "card-title" %></h5>
         </div>
         <div class="card-body">
           <h6 class="card-subtitle"><%= event.date.to_fs(:short) %> | <%= event.start_time.to_fs(:time) %></h6>
@@ -36,7 +37,7 @@
   <% end %>
 </div>
 
-<h1 class="p-2">Your Past Events</h1>
+<h2 class="p-2">Your Past Events</h2>
 <div class="container">
   <% @attending_events.each do |event| %>
     <% if event.date < Date.today %>

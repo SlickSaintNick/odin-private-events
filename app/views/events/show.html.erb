@@ -7,9 +7,11 @@
         <p class="fs-5"><%= @event.date.to_fs(:short)%>, <%= @event.start_time.to_fs(:time)%> - <%= @event.finish_time.to_fs(:time)%></P>
       </p>
       <p><%= @event.description%></p>
-      <p class="fs-5">Organiser email: <%= @event.creator.email%></p>
+      <p class="fs-5">Organiser: <%= @event.creator.name %> (<%= @event.creator.email%>)</p>
       <% if @event.date < Date.today %>
         <p><em>This event has already finished.</em></p>
+      <% elsif @event.attendee_ids.include?(current_user.id) %>
+        <p><em>You are registered to attend this event.</em></p>
       <% else %>
         <%= form_with model: [ @event, @event.event_attendees.build ] do |form| %>
           <% form.text_field :attending_event_id, value: @event.id %>
@@ -19,7 +21,7 @@
       </br>
       <p>Who is attending:</p>
       <% @event.attendees.each do |attendee| %>
-        <%= attendee.email %>
+        <%= attendee.name %> (<%= attendee.email %>)
       <% end %>
     </div>
   </div>
