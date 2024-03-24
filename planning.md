@@ -128,11 +128,11 @@ end
     - Name shown on 'Your Events' page.
     - Name shown on Events Index and Show instead of creator email
     - Name shown as list of people attending event instead of email.
-  - **Refactor into partials**
+  - Refactor into partials
   - Bootstrap all of the accessible pages
 
 - Extra
-  - Allow users to edit and delete events they created
+  - **Allow users to edit and delete events they created**
   - Allow users to remove themselves as an attendee
   - Make event private and add ability for event creator to invite specific users to an event.
 

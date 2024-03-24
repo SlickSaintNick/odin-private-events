@@ -1,31 +1,3 @@
 <h1>Create a new event</h1>
 
-<%= form_with model: @event do |form| %>
-  <div class="mb-3">
-    <%= form.label :title, "Name of your event", class: "form-label" %>
-    <%= form.text_field :title, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :description, "Description", class: "form-label" %>
-    <%= form.text_area :description, rows: 5, cols: 50, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :location, "Location", class: "form-label" %>
-    <%= form.text_field :location, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :date, "Date", class: "form-label" %>
-    <%= form.date_field :date, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :start_time, "Start time", class: "form-label" %>
-    <%= form.time_field :start_time, ampm: true, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :finish_time, "Finish time", class: "form-label" %>
-    <%= form.time_field :finish_time, ampm: true, class: "form-control" %>
-  </div>
-  <div>
-    <%= form.submit "Create your event", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<%= render "form", event: @event %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'events#index'
-  resources :events, only: [:index, :new, :create, :show] do
+  resources :events do
     resources :event_attendees, only: [:new, :create]
   end
   resources :users, only: [:show]
