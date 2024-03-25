@@ -137,16 +137,5 @@ end
     - Add buttons to main Event Show view
     - Add edit view (link to from Event Show)
 
-  - **Allow users to remove themselves as an attendee**
-  - Make event private and add ability for event creator to invite specific users to an event.
-
-### Notes
-
-Test user details:
-<test@test.com>
-testing
-
-<test2@test.com>
-testing
-
-<%= link_to "Delete", @friend, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+  - Allow users to remove themselves as an attendee
+  - **Make event private and add ability for event creator to invite specific users to an event.**
