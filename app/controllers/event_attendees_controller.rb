@@ -20,6 +20,11 @@ class EventAttendeesController < ApplicationController
     end
   end
 
+  def destroy
+    EventAttendee.where(event_attendee_id: current_user.id, attending_event_id: params[:event_id]).destroy_all
+    redirect_back_or_to root_path
+  end
+
   private
 
     def event_attendee_params

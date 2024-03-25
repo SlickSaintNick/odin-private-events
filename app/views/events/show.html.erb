@@ -12,6 +12,7 @@
         <p><em>This event has already finished.</em></p>
       <% elsif user_signed_in? && @event.attendee_ids.include?(current_user.id) %>
         <p><em>You are registered to attend this event.</em></p>
+        <%= link_to "Cancel your registration", event_event_attendee_path(@event), data: { turbo_method: :delete }, class: "btn btn-danger mb-3" %>
       <% else %>
         <%= form_with model: [ @event, @event.event_attendees.build ] do |form| %>
           <% form.text_field :attending_event_id, value: @event.id %>
