@@ -8,7 +8,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    # Add current_user_attending? variable
     @event = Event.find(params[:id])
   end
 
@@ -17,6 +16,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def create
@@ -29,7 +29,8 @@ class EventsController < ApplicationController
   end
 
   def update
-    if @event.update(event_params)
+    @event = Event.find(params[:id])
+    if @event.update(event_params) && @event.creator.id == current_user.id
       redirect_to event_url(@event)
     else
       render :edit, status: :unprocessable_entity
@@ -37,8 +38,14 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event.destroy!
-    redirect_to root_path
+    @event = Event.find(params[:id])
+    if @event.creator.id == current_user.id
+      @event.event_attendees.clear
+      @event.destroy!
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def event_params

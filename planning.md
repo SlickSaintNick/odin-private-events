@@ -132,8 +132,12 @@ end
   - Bootstrap all of the accessible pages
 
 - Extra
-  - **Allow users to edit and delete events they created**
-  - Allow users to remove themselves as an attendee
+  - Allow users to edit and delete events they created
+    - Add routes and controller actions
+    - Add buttons to main Event Show view
+    - Add edit view (link to from Event Show)
+
+  - **Allow users to remove themselves as an attendee**
   - Make event private and add ability for event creator to invite specific users to an event.
 
 ### Notes
@@ -144,3 +148,5 @@ testing
 
 <test2@test.com>
 testing
+
+<%= link_to "Delete", @friend, data: { turbo_method: :delete }, class: "btn btn-danger" %>
